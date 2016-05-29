@@ -6,16 +6,19 @@ use strict;
 
 # Minimum Interval of Chime Sequences
 my $btween_min_sec = 40; # Selected Value
-my $btween_mns_min = 15; # Minimal Value
+my $btween_mns_min = 10; # Minimal Value
 
 # Target-Average Interval of Chime Sequences
 my $btween_avg_sec = 300;
 # -- minimum value is double $btween_min_sec
 
 # Pre-Initial Convergence Rounds Remaining
-my $preinit_rounds_rm = 40;
+my $preinit_rounds_rm = 0;
 # This variable is important so that the earlier
 # chimes won't be too predictable.
+
+# Bufferic Factor;
+my $buf_factor = 4;
 
 
 # Mode option(s) to chobakwrap-caff:
@@ -31,6 +34,8 @@ sub opto__avg_do {
   $btween_avg_sec = int(($lc_a * 60) + &argola::getrg() + 0.2);
 } &argola::setopt('-avg',\&opto__avg_do);
 
+&argola::setopt('-snd',\&me::voca::custsnd);
+
 
 
 &argola::runopts();
@@ -38,6 +43,7 @@ sub opto__avg_do {
 $accessa = {
   'min' => $btween_min_sec,
   'avg' => $btween_avg_sec,
+  'buf' => $buf_factor,
 };
 &me::atnow::init($accessa);
 
