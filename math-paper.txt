@@ -1,0 +1,45 @@
+This file presents the mathematics for the advanced random distribution that I believe to be ideal for a mindfulness bell.
+
+The mathematical notation system used here is not the traditional one, but an alternate one that I designed to be far more ASCII-friendly. More on this notation system in the file "math-notation.txt".
+
+DEFINITIONS:
+
+ch[0]
+The seconds from the epoque that the program is started (and when the first chime is invited).
+
+ch[n]
+With 'n' being a hypothetical positive integer, this expression refers to the number of seconds from the epoque that any subsequent invitation of the chime occurs.
+
+m
+Defined as shorthand for 'n-1'.
+
+gp[0]
+The goalpost set at the start of the program's run
+
+gp[n]
+The goalpost set at the n'th round of the program's run.
+
+ch[n:a]
+The minimum possible value for 'ch[n]'
+
+ch[n:z]
+The maximum possible value for 'ch[n]'
+
+ch[n:s]
+The difference between the minimum and maximum values for ch[n]. (In these randomness equasions, 'a', 'z', and 's' are not defined variables, but as modes.)
+
+avg
+The target-average number of seconds between chime invitations.
+
+min
+The minimum number of seconds between chime invitations.
+
+buf
+An integer who's minimum value is '1'. The greater it's value, the more subtle the effect any wait-period between bells has on the random distribution of the next wait-period.
+
+rnd:[x]
+For 'x' is any positive integer - this is a randomization function 
+
+
+
+STARTING POINTS:

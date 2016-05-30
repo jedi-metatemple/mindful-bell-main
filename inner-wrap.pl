@@ -34,6 +34,10 @@ sub opto__avg_do {
   $btween_avg_sec = int(($lc_a * 60) + &argola::getrg() + 0.2);
 } &argola::setopt('-avg',\&opto__avg_do);
 
+sub opto__wake_do {
+  &me::atnow::stayawake();
+} &argola::setopt('-wake',\&opto__wake_do);
+
 &argola::setopt('-snd',\&me::voca::custsnd);
 
 
