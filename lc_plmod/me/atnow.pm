@@ -1,10 +1,16 @@
 package me::atnow;
 use chobaktime;
+use argola;
+use wraprg;
 use strict;
 
 my $wake_yes = 0;
 my $wake_cmd_a;
 my $wake_cmd_z;
+
+my $goal_f_on = 0;
+my $goal_f_at;
+my $goal_f_is;
 
 sub init {
   my $this;
@@ -57,6 +63,22 @@ sub advan {
   $this->{'nex'} = int($this->{'cur'} + $this->{'min'} + $lc_rawfwd);
 }
 
+sub opto__wf_do {
+  $goal_f_at = &argola::getrg();
+  $goal_f_is = &argola::getrg();
+  $goal_f_on = 10;
+}
+
+sub engoaler {
+  my $lc_cm;
+  my $lc_rs;
+  if ( $goal_f_on < 5 ) { return; }
+  if ( ! ( -f $goal_f_at ) ) { exit(0); }
+  $lc_cm = 'cat ' . &wraprg::bsc($goal_f_at);
+  $lc_rs = `$lc_cm`; chomp($lc_rs);
+  if ( $lc_rs ne $goal_f_is ) { exit(0); }
+}
+
 sub waittime {
   my $this;
   my $lc_for;
@@ -79,6 +101,7 @@ sub waittime {
     }
     &wakey(20);
     sleep($lc_slp);
+    &engoaler();
     $lc_now = &chobaktime::nowo();
   }
 }
